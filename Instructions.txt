@@ -5,4 +5,13 @@ cp ∗ .txt /tmp/$USERNAME/myDB/data/
 
 java -cp lib/*:bin/ DBproject $DBNAME $PORT $USER
 
+1)compile.sh
+run script to compile your code. All necessary libraries are included.
+
+2)run.sh
+Execute your code with inputs dbname, port, user
+
+example: run.sh sgoka001DB 9999 sgoka001
+
+
 ... RYAN 
