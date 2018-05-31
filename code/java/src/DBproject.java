@@ -299,36 +299,498 @@ public class DBproject{
 		return input;
 	}//end readChoice
 
+	//GLOBAL variable success used by all the functions we wrote
+	public static boolean success = true;
+
 	public static void AddPlane(DBproject esql) {//1
+		int id = 0;
+		String make = "";
+		String model = "";
+		int age = 0;
+		int seats = 0;
+		
+		try{
+			do {
+				System.out.print("\tEnter plane make: $");
+				make = in.readLine();
+				if (make.length() == 0)
+				{
+					System.out.println("Please enter a valid make");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter plane model: $");
+				model = in.readLine();
+				if (model.length() == 0)
+				{
+					System.out.println("Please enter valid model");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter age of the plane : $");
+				age = Integer.parseInt(in.readLine());
+				if (age == 0)
+				{
+					System.out.println("Please enter valid age");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while(!success);
+			
+			do {
+				System.out.print("\tEnter number of seats on the plane: $");
+				seats = Integer.parseInt(in.readLine());
+				if (seats < 1 || seats > 499)
+				{
+					System.out.println("Please enter number of seats");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while(!success);
+			
+			String query = "INSERT INTO Plane (make, model, age, seats) " +
+				"VALUES ('" + make + "', '" + model + "', " + age + "," + seats + ");";
+
+            int rowCount = esql.executeQuery(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 
 	public static void AddPilot(DBproject esql) {//2
+		String name = "";
+		String nationality = "";
+		try{
+			do {
+				System.out.print("\tEnter pilot name: $");
+				name = in.readLine();
+				if (name.length() == 0)
+				{
+					System.out.println("Please enter a valid name");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter pilot nationality: $");
+				nationality = in.readLine();
+				if (nationality.length() == 0)
+				{
+					System.out.println("Please enter valid nationality");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while (!success);
+			
+			
+			String query = "INSERT INTO Pilot (fullname, nationality) " +
+				"VALUES ('" + name + "', '" + nationality + "');";
+
+            int rowCount = esql.executeQuery(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 
 	public static void AddFlight(DBproject esql) {//3
 		// Given a pilot, plane and flight, adds a flight in the DB
+		int cost = 0;
+		int seatsSold = 0;
+		int numStops = 0;
+		String departureDate = "";
+		String arrivalDate = "";
+		String arrivalAirport = "";
+	    String departureAirport = "";
+		try{
+			
+			do {
+				System.out.print("\tEnter flight cost: $");
+				cost = Integer.parseInt(in.readLine());
+				if (cost == 0)
+				{
+					System.out.println("Please enter a valid cost");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter number of seats sold on the flight: $");
+				seatsSold = Integer.parseInt(in.readLine());
+				if (seatsSold < 0)
+				{
+					System.out.println("Please enter valid number of seats sold");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter number of stops for the flight: $");
+				numStops = Integer.parseInt(in.readLine());
+				if (numStops < 0)
+				{
+					System.out.println("Please enter valid number of stops");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while(!success);
+			
+			do {
+				System.out.print("\tEnter flight departure Date (YYYY-MM-DD HR:MIN): $");
+				departureDate = in.readLine();
+				if (departureDate.length() == 0)
+				{
+					System.out.println("Please enter a valid departure Date");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter flight arrival Date (YYYY-MM-DD HR:MIN): $");
+				arrivalDate = in.readLine();
+				if (arrivalDate.length() == 0)
+				{
+					System.out.println("Please enter valid arrival Date");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter flight arrival Airport: $");
+				arrivalAirport = in.readLine();
+				if (arrivalAirport.length() == 0)
+				{
+					System.out.println("Please enter a valid arrival Airport");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter flight departure Airport: $");
+				departureAirport = in.readLine();
+				if (departureAirport.length() == 0)
+				{
+					System.out.println("Please enter valid departure Airport");
+					success = false;
+				}
+				else
+				{ 
+					success = true; 
+					
+				}
+			} while (!success);
+			
+			String query = "INSERT INTO Flight (cost, num_sold, num_stops, actual_departure_date, " +
+				"actual_arrival_date, arrival_airport, departure_airport) " +
+				"VALUES (" + cost + "," + seatsSold + ", " + numStops + ", '" + departureDate 
+				+ "', '" + arrivalDate + "', '" + arrivalAirport + "', '" + departureAirport + "');";
+
+            int rowCount = esql.executeQuery(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 
 	public static void AddTechnician(DBproject esql) {//4
+		try{
+			String name = "";
+			do {
+				System.out.print("\tEnter flight Technician name: $");
+				name = in.readLine();
+				if (name.length() == 0)
+				{
+					System.out.println("Please enter a valid Technician name");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			String query = "INSERT INTO Technician (full_name) " +
+                "VALUES ('" + name + "');";
+
+            int rowCount = esql.executeQuery(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 
 	public static void BookFlight(DBproject esql) {//5
 		// Given a customer and a flight that he/she wants to book, add a reservation to the DB
+		try{
+			int customerID = 0;
+		    int flightID = 0;
+			String status = "";
+			
+			do {
+				System.out.print("\tEnter customer ID: $");
+				customerID = Integer.parseInt(in.readLine());
+				
+				String query = "";
+				query += "SELECT DISTINCT id FROM Customer WHERE id = \'";
+				query += customerID + "\';";
+				int rows = esql.executeQuery(query);
+				if (rows == 0) {
+					System.out.println("Customer ID don't exist.");
+					success = false;
+				}
+				else {
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter flight number: $");
+				flightID = Integer.parseInt(in.readLine());
+				
+				String query = "";
+				query += "SELECT * FROM Flight WHERE fnum = \'"; 
+				query += flightID + "\';";
+				int rows = esql.executeQuery(query);
+				if (rows == 0) {
+					System.out.println("Flight number don't exist.");
+					success = false;
+				}
+				else {
+					success = true;
+				}
+				
+			} while (!success);
+			
+			do {
+				System.out.print("\tEnter status (C), (R), or (W): $");
+				status = in.readLine();
+				if (!(status.equals("C")) && !(status.equals("R")) && !(status.equals("W")))
+				{
+					System.out.println("Please enter a valid reservation status");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			// determine the status of the reservation (Waitlisted/Confirmed/Reserved)
+			// if #seats_Sold < #seats -> STATUS = Reserved R
+			// else if #seats_Sold >= #seats -> STATUS = Waitlisted W
+			// if customerID already exists and status = Reserved -> STATUS = Confirmed C
+			
+			/*String query = "SELECT (P.seats - F.num_sold) ";
+					query += "FROM Plane P, Flight F ";
+					query += "WHERE pid = \'" + flightID + "\' AND fnum = \'" + flightID + "\' ";
+					query += "WHERE F.flightNum = P.pid;";
+			
+			int rows = esql.executeQuery(query);
+			if (rows > 0) {
+				status = "R";
+			}
+			else{ status = "W";}*/
+			
+			
+			String query = "INSERT INTO Reservation (cid, fid, status) " +
+                "VALUES (" + customerID + "," + flightID + ", '" + status + "');";
+
+            int rowCount = esql.executeQuery(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 
 	public static void ListNumberOfAvailableSeats(DBproject esql) {//6
 		// For flight number and date, find the number of availalbe seats (i.e. total plane capacity minus booked seats )
+	    try{
+			int flightID = 0;
+		    String departureDate = "";
+		    do {
+				System.out.print("\tEnter flight number: $");
+				flightID = Integer.parseInt(in.readLine());
+				
+				String query = "";
+				query += "SELECT * FROM Flight WHERE fnum = \'"; 
+				query += flightID + "\';";
+				int rows = esql.executeQuery(query);
+				if (rows == 0) {
+					System.out.println("Flight number don't exist.");
+					success = false;
+				}
+				else {
+					success = true;
+				}
+				
+			} while (!success);
+			do {
+				System.out.print("\tEnter flight departure Date (YYYY-MM-DD HR:MIN): $");
+				departureDate = in.readLine();
+				if (departureDate.length() == 0)
+				{
+					System.out.println("Please enter a valid departure Date");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			
+			String query = "SELECT (Plane.seats - Flight.num_sold) AS SeatsAvailable FROM Flight " +
+                "INNER JOIN Schedule ON Schedule.flightNum = Flight.fnum " +
+                "INNER JOIN FlightInfo fi ON fi.flight_id = Flight.fnum " +
+                "INNER JOIN Plane ON Plane.id = fi.plane_id " +
+                "WHERE Flight.fnum = " + flightID + " AND Schedule.departure_time = '" + departureDate + "';";
+
+            int rowCount = esql.executeQueryAndPrintResult(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
+	    
 	}
 
 	public static void ListsTotalNumberOfRepairsPerPlane(DBproject esql) {//7
 		// Count number of repairs per planes and list them in descending order
+		try{
+
+			String query = "SELECT Plane.id, COUNT(Repairs.rid) AS RepairCount FROM Plane " +
+                "INNER JOIN Repairs ON Repairs.plane_id = Plane.id " +
+                "GROUP BY Plane.id " +
+                "ORDER BY RepairCount DESC;";
+
+            int rowCount = esql.executeQueryAndPrintResult(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 
 	public static void ListTotalNumberOfRepairsPerYear(DBproject esql) {//8
 		// Count repairs per year and list them in ascending order
+		try{
+			String query = "SELECT EXTRACT(YEAR FROM repair_date) AS Year, " +
+			    "COUNT(rid) AS RepairCount FROM Repairs " +
+                "GROUP BY EXTRACT(YEAR FROM repair_date) " +
+                "ORDER BY RepairCount ASC;";
+
+            int rowCount = esql.executeQueryAndPrintResult(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 	
 	public static void FindPassengersCountWithStatus(DBproject esql) {//9
 		// Find how many passengers there are with a status (i.e. W,C,R) and list that number.
+		try{
+		    int flightID = 0;
+			String status = "";
+			do {
+				System.out.print("\tEnter flight number: $");
+				flightID = Integer.parseInt(in.readLine());
+				
+				String query = "";
+				query += "SELECT * FROM Flight WHERE fnum = \'"; 
+				query += flightID + "\';";
+				int rows = esql.executeQuery(query);
+				if (rows == 0) {
+					System.out.println("Flight number don't exist.");
+					success = false;
+				}
+				else {
+					success = true;
+				}
+				
+			} while (!success);
+			do {
+				System.out.print("\tEnter reservation status ((C) confirmed, (R) reserved, or(W)aitlisted): $");
+				status = in.readLine();
+				if (!(status.equals("C")) && !(status.equals("R")) && !(status.equals("W")))
+				{
+					System.out.println("Please enter a valid reservation status");
+					success = false;
+				}
+				else
+				{
+					success = true;
+				}
+				
+			} while (!success);
+			String query = "SELECT COUNT(Customer.id) FROM Customer " +
+                "INNER JOIN Reservation ON Reservation.cid = Customer.id " +
+                "WHERE Reservation.fid = " + flightID + " AND Reservation.status = '" + status + "';";
+
+            int rowCount = esql.executeQueryAndPrintResult(query);
+            System.out.println ("total row(s): " + rowCount);
+      }catch(Exception e){
+         System.err.println (e.getMessage());
+      }
 	}
 }
