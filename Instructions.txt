@@ -1,6 +1,7 @@
 INSTRUCTIONS
 
 1) start postgresql
+cd code
 cd postgresql
 source ./startPostgreSQL.sh
 
