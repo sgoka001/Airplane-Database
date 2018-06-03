@@ -373,8 +373,8 @@ public class DBproject{
 			String query = "INSERT INTO Plane (make, model, age, seats) " +
 				"VALUES ('" + make + "', '" + model + "', " + age + "," + seats + ");";
 
-            int rowCount = esql.executeQuery(query);
-            System.out.println ("total row(s): " + rowCount);
+            esql.executeUpdate(query);
+            System.out.println ("Successfully inserted 1 Plane ");
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
@@ -418,8 +418,8 @@ public class DBproject{
 			String query = "INSERT INTO Pilot (fullname, nationality) " +
 				"VALUES ('" + name + "', '" + nationality + "');";
 
-            int rowCount = esql.executeQuery(query);
-            System.out.println ("total row(s): " + rowCount);
+            esql.executeUpdate(query);
+            System.out.println ("Successfully inserted 1 Pilot ");
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
@@ -546,8 +546,8 @@ public class DBproject{
 				"VALUES (" + cost + "," + seatsSold + ", " + numStops + ", '" + departureDate 
 				+ "', '" + arrivalDate + "', '" + arrivalAirport + "', '" + departureAirport + "');";
 
-            int rowCount = esql.executeQuery(query);
-            System.out.println ("total row(s): " + rowCount);
+            esql.executeUpdate(query);
+            System.out.println ("Successfully inserted 1 Flight");
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
@@ -574,8 +574,8 @@ public class DBproject{
 			String query = "INSERT INTO Technician (full_name) " +
                 "VALUES ('" + name + "');";
 
-            int rowCount = esql.executeQuery(query);
-            System.out.println ("total row(s): " + rowCount);
+            esql.executeUpdate(query);
+            System.out.println ("Successfully added 1 Technician");
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
@@ -658,8 +658,8 @@ public class DBproject{
 			String query = "INSERT INTO Reservation (cid, fid, status) " +
                 "VALUES (" + customerID + "," + flightID + ", '" + status + "');";
 
-            int rowCount = esql.executeQuery(query);
-            System.out.println ("total row(s): " + rowCount);
+            esql.executeUpdate(query);
+            System.out.println ("Successfully added 1 Reservation");
       }catch(Exception e){
          System.err.println (e.getMessage());
       }
