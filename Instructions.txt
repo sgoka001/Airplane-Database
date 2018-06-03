@@ -1,17 +1,15 @@
 INSTRUCTIONS
 
+1) start postgresql
+cd postgresql
+source ./startPostgreSQL.sh
+
+2) create postgre database. The script below creates the tables, triggers, and indexes
 source ./createPostgreDB.sh
-cp ∗ .txt /tmp/$USERNAME/myDB/data/
 
-java -cp lib/*:bin/ DBproject $DBNAME $PORT $USER
+3)compile java code. run script to compile your code. All necessary libraries are included.
+cd ../java
+source ./compile.sh
 
-1)compile.sh
-run script to compile your code. All necessary libraries are included.
-
-2)run.sh
-Execute your code with inputs dbname, port, user
-
-example: run.sh sgoka001DB 9999 sgoka001
-
-
-... RYAN 
+2)Execute your code with inputs dbname, port, user
+example: source ./run.sh sgoka001_DB 9999 sgoka001
